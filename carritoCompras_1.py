@@ -13,6 +13,6 @@ mostrara el precio final
 """
 
 #no cambiar estas lineas ------------------
-import herramientasProfesor as Michi
+import michiHerramientas as Michi
 lista_productos = Michi.GetProductList()
 #editar de aqui en adelante ---------------
