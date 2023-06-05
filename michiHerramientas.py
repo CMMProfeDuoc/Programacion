@@ -1,6 +1,11 @@
 def test_tools (message:str = "test") -> None:
     print(message)
-    
+
+def Miau (miauTime:int = 1) -> str:
+    miau = "mi" + "a"*miauTime + "u"
+    print(miau)
+    return miau
+
 def PauseAndClean () -> None:
     from os import system
     system("pause")
