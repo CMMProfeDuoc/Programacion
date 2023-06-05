@@ -16,3 +16,5 @@ mostrara el precio final
 import michiHerramientas as Michi
 lista_productos = Michi.GetProductList()
 #editar de aqui en adelante ---------------
+
+print (lista_productos)

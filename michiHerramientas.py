@@ -19,6 +19,7 @@ def GetProductList() -> list:
             continue
         line = line.strip()
         aux_str = line.split(";")
+        print(aux_str)
         producto = {
             "nombre":aux_str[0],
             "precio":aux_str[1],
