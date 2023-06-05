@@ -63,6 +63,25 @@ def setMatrix (x_:int, y_:int, object=0) -> list :
     matrix = [rows] * y_
     return matrix
 
-def drawMatrix (matrix:list) -> None :
-    pass
-    
+def GetTelefonos (file_name:str="telefonos.csv") -> list :
+    lista = []
+    file = open(file_name,"r")
+    for count,line in enumerate(file):
+        if (count == 0):
+            continue
+        line = line.strip()
+        aux_str = line.split(";")
+        telefono = {
+            "nombre":str(aux_str[0]),
+            "telefono":int(aux_str[1]),
+        }
+        lista.append(telefono)
+    file.close()
+    return lista
+
+def printTelefonos (lista_telefonos:list) -> None:
+    for count,t in enumerate(lista_telefonos):
+        try:
+            print(count+1,"||",t["nombre"]," ",t["telefono"],sep="")
+        except Exception:
+            continue
