@@ -1,3 +1,6 @@
+def test_tools (message:str = "test") -> None:
+    print(message)
+
 def PauseAndClean () -> None:
     from os import system
     system("pause")
