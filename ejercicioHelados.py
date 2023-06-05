@@ -17,3 +17,36 @@ Despues, preguntara para añadir los agregados
 El programa guardara cada pedido en una lista
 Preguntara por más de un helado
 """
+import listaHelados
+
+def imprimir_lista (nombre_lista:str,lista:list) -> None :
+    print("---",nombre_lista,"---")
+    for element in lista:
+        print(element["nombre"]," $",element["precio"])
+
+def verificarSeleccion (sel:str,lista:list) -> bool:
+    for element in lista:
+        if (sel == element["nombre"]):
+            return True
+    return False
+
+helados = listaHelados.helados
+agregados = listaHelados.agregados
+
+while (True):
+    #seleccionar helados
+    imprimir_lista("Helados",helados)
+    sel = input("Seleccione Helado: ")
+    if (verificarSeleccion(sel,helados)):
+        print("Seleccion Valid")
+
+    #seleccionar agregados
+    imprimir_lista("Agregados",agregados)
+    sel = input("Seleccion Agregado")
+    if (verificarSeleccion(sel,agregados)):
+        print("Agregado valido")
+
+    #preguntar si quiere repetir ?
+    salir = input("Quiere salir?")
+    if (salir == "si"):
+        break
