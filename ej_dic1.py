@@ -18,10 +18,6 @@ y para acceder a un valor solo escribimos
 nombre_diccionario["llave_n"] = dato_n
 """
 
-#No modificar
-import herramientasProfesor as Michi
-#de aqui en adelante puede modificar -----------------
-
 #ejemplo de diccionario
 usuario = {
     "nombre":"Pepito",
