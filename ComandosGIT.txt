@@ -1,5 +1,7 @@
 Comandos GIT
 
+Tutorial - https://www.w3schools.com/git/
+
 git clone URL_carpeta <- clona (descarga) una carpeta
 	1. Si la carpeta no existe en el pc, la crea
 	2. Si la carpeta ya existe, no se ejecuta nada, tira error
@@ -11,3 +13,15 @@ git status <- revisar estado actual de nuestro git
 
 git pull <- actualizar carpeta
 	Si hacen git pull y ya esta actualizada la carpeta, no pasa nada
+
+git branch <nombre_rama> <- crea una nueva rama (branch)
+
+git checkout <nombre_rama> <- moverse a rama
+
+git add -A <- agregar todos los cambios a lista de cambios
+
+git add -nombre_archivo <- añadir archivo a lista de cambios
+
+git commit -m "mensaje" <- aplicar cambios. Se guardan cpon el mensaje
+
+git merge <nombre_rama> <- fusiona la rama seleccionada con la rama en la que se encuentre actualmente
