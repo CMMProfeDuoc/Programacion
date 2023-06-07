@@ -1,0 +1,13 @@
+Comandos GIT
+
+git clone URL_carpeta <- clona (descarga) una carpeta
+	1. Si la carpeta no existe en el pc, la crea
+	2. Si la carpeta ya existe, no se ejecuta nada, tira error
+
+git init <- inizializa git en la carpeta
+	Si git esta inizializado, lo reinicia
+
+git status <- revisar estado actual de nuestro git
+
+git pull <- actualizar carpeta
+	Si hacen git pull y ya esta actualizada la carpeta, no pasa nada
