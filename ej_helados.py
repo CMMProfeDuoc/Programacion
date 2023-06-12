@@ -6,4 +6,8 @@ Los agregados se puedenagregar una vez cada uno.El programa preguntará cuántas
 quiere de cada sabor (ver ejemplo másabajo) en un solo input. 
 Luego preguntará si quiere los agregados.Al final entrega el precio final 
 y si el usuario desea otro helado.
+
+Cree las siguientes funciones:
+1. Convertir las listas a 1 lista de dccionarios
 """
+
