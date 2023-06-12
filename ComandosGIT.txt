@@ -24,4 +24,10 @@ git add -nombre_archivo <- añadir archivo a lista de cambios
 
 git commit -m "mensaje" <- aplicar cambios. Se guardan cpon el mensaje
 
+	Si no tienen un usuario configurado, deben agregar uno con:
+	git config --global user.email "email" <- configurar mail
+	git config --global user.name "name" <- configurar nombre
+
 git merge <nombre_rama> <- fusiona la rama seleccionada con la rama en la que se encuentre actualmente
+
+git branch --delete <nombre_rama>  <- borrar una rama
