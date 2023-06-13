@@ -8,8 +8,7 @@ el programa debe ser capaz de verificar si un usuario ha ingresado o sus credenc
 solo se pueden permitir 3 ingresos seguidos, luego de esto, el programa debe cerrar
 """
 
-
 #no cambiar estas lineas ------------------
 import michiHerramientas as Michi
-lista_productos = Michi.GetUserList()
+contactos = Michi.GetUserList()
 #editar de aqui en adelante ---------------

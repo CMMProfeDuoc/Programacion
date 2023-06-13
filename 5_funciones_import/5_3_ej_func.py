@@ -1,6 +1,7 @@
 # NO MODIFICAR -----
 import listas
-lista_nombres = listas.getNameList()
+lista_nombres1 = listas.getNameList("lista_nombres.txt")
+lista_nombres2 = listas.getNameList("lista_nombres.txt")
 # NO MODIFICAR -----
 
 """
@@ -12,7 +13,9 @@ verifique si ese elemento se repite en la lista
 
 3. Cree un programa que reciba SOLO una lista y verifique
 si hay elemnentos repetidos
+
+Pruebe las funciones con las listas otorgadas
 """
 
 
-print(lista_nombres)
+print(lista_nombres1)

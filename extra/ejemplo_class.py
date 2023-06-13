@@ -1,3 +1,8 @@
+"""
+Este es un ejemplo de una clase en Python
+Una clase es un constructor 
+"""
+
 class Animal :
     def __init__(self,nombre:str,patas:int,ojos:int) -> None:
         self.patas = patas

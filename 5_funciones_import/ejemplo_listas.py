@@ -12,6 +12,5 @@ def sumaSimple (a:int, b:int) -> int :
     return c
 #-------------------------------
 
-
 resultado = sumaSimple(10,23)
 print(resultado)
