@@ -84,3 +84,9 @@ def printTelefonos (lista_telefonos:list) -> None:
             print(count+1,"||",t["nombre"]," ",t["telefono"],sep="")
         except Exception:
             continue
+
+def printDict (lista_elementos:list) -> None:
+    for element in lista_elementos:
+        for key in element.keys():
+            print(key,element[key],sep=" : ")
+        print("----------")

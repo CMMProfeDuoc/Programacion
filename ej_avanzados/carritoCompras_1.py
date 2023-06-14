@@ -23,4 +23,5 @@ import michiHerramientas as Michi
 lista_productos = Michi.GetProductList()
 #editar de aqui en adelante ---------------
 
-print (lista_productos)
+#funcion para imprimir la lista de forma ordenada
+Michi.printDict(lista_productos)
