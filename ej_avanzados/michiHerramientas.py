@@ -11,7 +11,7 @@ def PauseAndClean () -> None:
     system("pause")
     system("cls")
 
-def GetProductList() -> list:
+def GetProductList(file_name:str = "productos.csv") -> list:
     lista = []
     file = open("productos.csv","r")
     for count,line in enumerate(file):
@@ -21,9 +21,9 @@ def GetProductList() -> list:
         aux_str = line.split(";")
         producto = {
             "nombre":aux_str[0],
-            "precio":aux_str[1],
-            "peso":aux_str[2],
-            "cantidad":aux_str[3],
+            "precio":int(aux_str[1]),
+            "peso":int(aux_str[2]),
+            "cantidad":int(aux_str[3]),
             "ingredientes":aux_str[4].split(",")
         }
         lista.append(producto)

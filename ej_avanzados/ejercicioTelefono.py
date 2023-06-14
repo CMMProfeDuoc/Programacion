@@ -27,3 +27,10 @@ Parte 3
 El usuario tiene la opcion de agregar un mail a cada contacto, para esto, debe buscar un contacto
 y el programa debe dar la opcion de agregar, reemplazar o quitar el mail asociado al contacto
 """
+
+#-- NO MODIFICAR ----
+import michiHerramientas as Michi
+lista_telefonos = Michi.GetTelefonos()
+#-----------------
+
+print(lista_telefonos)
