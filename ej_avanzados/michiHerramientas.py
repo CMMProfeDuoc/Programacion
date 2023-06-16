@@ -13,7 +13,7 @@ def PauseAndClean () -> None:
 
 def GetProductList(file_name:str = "productos.csv") -> list:
     lista = []
-    file = open("productos.csv","r")
+    file = open(file_name,"r")
     for count,line in enumerate(file):
         if (count == 0):
             continue
