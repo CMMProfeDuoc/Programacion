@@ -33,3 +33,17 @@ lista_productos = Michi.GetProductList()
 
 #funcion para imprimir la lista de forma ordenada
 Michi.printDict(lista_productos)
+
+def validacionNumerica (sel,lista:list) -> int:
+    if (sel.isnumeric()):
+        if (sel in range(len(lista))):
+            return int(sel)
+    return None 
+
+while True:
+    entrada = input(">> ")
+    if (entrada != None):
+        pass
+        #hacer cosas
+    else:
+        continue 
