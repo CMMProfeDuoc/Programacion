@@ -16,6 +16,14 @@ ingredientes <- este es una lista
 
 El usuario puede seleccionar todos los productos que desee, luego se
 mostrara el precio final
+
+Cree las funciones para:
+
+Mostrar Productos
+Seleccionar Producto
+Buscar Producto
+
+Todo debe estar en un "menu"
 """
 
 #no cambiar estas lineas ------------------
