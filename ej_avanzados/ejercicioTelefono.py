@@ -1,9 +1,3 @@
-import michiHerramientas as MH
-listaTelefonos = MH.GetTelefonos()
-
-#test de funcionamiento
-print(listaTelefonos)
-
 """
 Parte 1
 Cree un sistema de agenda de telefono que sea capaz de filtrar por nombre o telefono.
@@ -32,5 +26,3 @@ y el programa debe dar la opcion de agregar, reemplazar o quitar el mail asociad
 import michiHerramientas as Michi
 lista_telefonos = Michi.GetTelefonos()
 #-----------------
-
-print(lista_telefonos)

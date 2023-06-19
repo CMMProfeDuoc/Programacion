@@ -70,13 +70,10 @@ def GetTelefonos (file_name:str="telefonos.csv") -> list :
             continue
         line = line.strip()
         aux_str = line.split(";")
-        telefono = {
-            "nombre":str(aux_str[0]),
-            "telefono":int(aux_str[1]),
-        }
-        lista.append(telefono)
+        lista.append({"nombre":aux_str[0],"telefono":int(aux_str[1])})
     file.close()
     return lista
+
 
 def printTelefonos (lista_telefonos:list) -> None:
     for count,t in enumerate(lista_telefonos):
