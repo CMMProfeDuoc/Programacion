@@ -4,6 +4,8 @@
     Su trabajo es crear un programa que reciba una letra y muestre todos los nombres que tengan esa letra.
     El programa debe mostrar las vacas de forma enumerada, ya que el granjero luego puede seleccionar (usando el numero) una vaca.
     Cuando el granjero selecciona la vaca, sale un mensaje que dice '<nombre de vaca> ha sido seleccionada'
+    Este proceso se puede repetir varias veces para crear una lista de las vacas seleccionadas.
+    Cuando el granejero ingrese 'salir'. Se muestran todas las vacas seleccionadas y termina el programa.
 """
 
 nombres_vacas = [
