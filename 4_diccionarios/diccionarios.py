@@ -30,9 +30,21 @@ print(usuario["nombre"])
 #cambiar un dato del diccionario
 usuario["nombre"] = "Pepo"
 
-#Imprima el nuevo valor <<<<
+#agregar un dato a nueva llave
+usuario["mail"] = "pepito@notmail.com"
+#con agregar una nueva llave, se crea y se actualiza el diccionario
+#si llave existe, se actualiza el dato
 
+#sacar llave:valor del diccionario 
+# var = dict.pop('key') <- se DEBE entregar la llave a sacar. De lo contrario hay error
+# el 'pop' nos permite GUARDAR el dato de ser necesario o usarse para solo sacar el dato
+user.pop("edad")
 
-#agregar una llave y un nuevo valor al diccionario
-usuario["altura"] = 1.67 #<- en este caso agregamos un float
-#si colocamos una llave que no existe, python la creara y agregara ese valor!
+# ver las LLAVES -> dict.keys()
+# ver los VALORES -> dict.values()
+
+# Mostrar todos los items del diccionario
+# for k in dict:
+#     print (dict[k])
+for k in user:
+    print(k, user[k])
