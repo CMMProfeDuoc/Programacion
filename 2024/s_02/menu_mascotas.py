@@ -47,4 +47,29 @@ lista_animales = [
         'peso' : 200, 
         'color' : 'blanco',
     },
+    {
+        'nombre': 'rigby',
+        'tipo' : 'mapache',
+        'peso' : 8, 
+        'color' : 'cafe',
+    },
+    {
+        'nombre': 'pedro',
+        'tipo' : 'mapache',
+        'peso' : 5, 
+        'color' : 'negro',
+    },
+    {
+        'nombre': 'panxito',
+        'tipo' : 'conejo',
+        'peso' : 3, 
+        'color' : 'verde',
+    },
+    {
+        'nombre': 'panxote',
+        'tipo' : 'conejo',
+        'peso' : 10, 
+        'color' : 'azul',
+    },
+]
 ]
