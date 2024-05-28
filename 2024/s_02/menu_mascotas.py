@@ -1,10 +1,11 @@
 # SECCION 002 D
-# V 1
+# V 1.1
 # fecha: 28/05
 # hagan los ejercicios
 
 """
-    1. Mostrar la lista numerada de animales (para poder seleccionar)
+    ✔ 1. Mostrar la lista numerada de animales (para poder seleccionar) 
+        1.5. solucionar posibles errores en seleccion
     2. Poder 'filtrar' la lista de animales, segun el tipo
     3. Agregar animales a la lista (deben tener los mismos datos,
     nombre, tipo, peso, color)
@@ -72,4 +73,13 @@ lista_animales = [
         'color' : 'azul',
     },
 ]
-]
+
+for i, animal in enumerate(lista_animales):
+    print(i+1,'. ', animal['nombre'],' | ', animal['tipo'], sep='')
+
+print()
+sel = int(input("seleccione animal: "))-1
+animal_seleccionado = lista_animales[sel]
+print('-'*10)
+for llave in animal_seleccionado.keys():
+    print(llave,'=>',animal_seleccionado[llave])
