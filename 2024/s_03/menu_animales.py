@@ -6,6 +6,9 @@
 """
     1. Mostrar la lista numerada de animales (para poder seleccionar)
     2. Poder 'filtrar' la lista de animales, segun el tipo
+
+    3. (jueves) Agregar animales a la lista (deben tener los mismos datos,
+    nombre, tipo, peso, color)
 """
 
 lista_animales = [
