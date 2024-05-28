@@ -1,4 +1,4 @@
-# SECCION 003 D
+# SECCION 002 D
 # V 1
 # fecha: 28/05
 # hagan los ejercicios
