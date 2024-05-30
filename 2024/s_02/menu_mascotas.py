@@ -10,7 +10,21 @@
         ✔ 2. Poder 'filtrar' la lista de animales, segun el tipo
         3. Agregar animales a la lista (deben tener los mismos datos,
         nombre, tipo, peso, color)
+
+        4. Crear Funcion que determine si una seleccion es valida
+            El usuario tiene un rango de seleccion, y la funcion retorna True o False
+            dependiendo si la seleccion es valida o no
+
 """
+
+def mostrarLista (lista:list) -> None:
+    for i, elemento in enumerate(lista):
+        print(i,'=>',elemento)
+
+def mostrarAnimalLista (lista:list) -> None:
+    for i, animal in enumerate(lista):
+        print(i+1,'. ', animal['nombre'],' => ', animal['tipo'], sep='')
+
 
 lista_animales = [
     {
@@ -80,20 +94,21 @@ opciones_menu = [
     'seleccionar por tipo',
     'agregar animales',
 ]
+
 while (True): #WHILE MENU
-    for i, opcion in enumerate(opciones_menu):
-        print(i+1, opcion)
-    print()
+    mostrarLista(opciones_menu)
+
+    #CONVERTIR ESTO A FUNCION
     while (True):
         sel = input(">>: ")
         if (sel.isnumeric()):
             sel = int(sel)-1
             if (sel in range(len(opciones_menu))):
                 break
+    #------
 
     if (sel == 0):
-        for i, animal in enumerate(lista_animales):
-            print(i+1,'. ', animal['nombre'],' | ', animal['tipo'], sep='')
+        mostrarAnimalLista(lista_animales)
         print()
         while (True):
             sel = input("seleccione animal: ")
@@ -115,8 +130,7 @@ while (True): #WHILE MENU
         for animal in lista_animales:
             if animal['tipo'] == filtro:
                 lista_filtrada.append(animal)
-        for i, animal in enumerate(lista_filtrada):
-            print(i+1,'. ', animal['nombre'],' | ', animal['tipo'], sep='')
+        mostrarAnimalLista(lista_filtrada)
         print()
         input()
         continue
@@ -125,4 +139,3 @@ while (True): #WHILE MENU
     if (sel == 2):
         print("OPCION AUN NO LISTA")
         continue
-
