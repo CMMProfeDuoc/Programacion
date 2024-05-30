@@ -1,19 +1,36 @@
 # SECCION 002 D
-# V 3
-# fecha: 28/05
+# V 4.5
+# fecha: 30/05
 # hagan los ejercicios
 
 """
-    ✔ 4. agregar menu para seleccionar:
-        ✔ 1. Mostrar la lista numerada de animales (para poder seleccionar) 
-        ✔ 1.5. solucionar posibles errores en seleccion
-        ✔ 2. Poder 'filtrar' la lista de animales, segun el tipo
-        3. Agregar animales a la lista (deben tener los mismos datos,
+    ✔ Agregar menu para seleccionar:
+        ✔ - Mostrar la lista numerada de animales (para poder seleccionar)
+            y mostrar detalle del animal 
+            ✔ >> solucionar posibles errores en seleccion
+        
+        - Guardar los animales seleccionados
+    
+        - Mostrar animales seleccionados
+
+        ✔ Poder 'filtrar' la lista de animales, segun el tipo
+        
+        - Agregar animales a la lista (deben tener los mismos datos,
         nombre, tipo, peso, color)
 
-        4. Crear Funcion que determine si una seleccion es valida
+        ✔ Crear Funcion que determine si una seleccion es valida
             El usuario tiene un rango de seleccion, y la funcion retorna True o False
             dependiendo si la seleccion es valida o no
+
+        - Eliminar Animal
+            - mostrar la lista
+            - seleccionar que cosa eliminar
+
+        - Modificar el dato de un animal
+
+        - Agregar un dato (llave : valor) a un animal           
+
+    
 
 """
 
@@ -25,6 +42,14 @@ def mostrarAnimalLista (lista:list) -> None:
     for i, animal in enumerate(lista):
         print(i+1,'. ', animal['nombre'],' => ', animal['tipo'], sep='')
 
+def selOpcion (lista:list) -> int:
+    while (True):
+        sel = input(">> ")
+        if (sel.isnumeric()):
+            sel = int(sel)-1
+            if (sel in range(len(lista))):
+                break
+    return sel
 
 lista_animales = [
     {
@@ -97,25 +122,12 @@ opciones_menu = [
 
 while (True): #WHILE MENU
     mostrarLista(opciones_menu)
-
-    #CONVERTIR ESTO A FUNCION
-    while (True):
-        sel = input(">>: ")
-        if (sel.isnumeric()):
-            sel = int(sel)-1
-            if (sel in range(len(opciones_menu))):
-                break
-    #------
+    sel = selOpcion(opciones_menu)
 
     if (sel == 0):
         mostrarAnimalLista(lista_animales)
         print()
-        while (True):
-            sel = input("seleccione animal: ")
-            if (sel.isnumeric()):
-                sel = int(sel)-1
-                if (sel in range(len(lista_animales))):
-                    break
+        sel = selOpcion(lista_animales)
 
         animal_seleccionado = lista_animales[sel]
         print('-'*10)
@@ -132,7 +144,7 @@ while (True): #WHILE MENU
                 lista_filtrada.append(animal)
         mostrarAnimalLista(lista_filtrada)
         print()
-        input()
+        input() # pausa
         continue
     #end if 1
         
