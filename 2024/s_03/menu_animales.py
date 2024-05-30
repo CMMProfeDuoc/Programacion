@@ -1,6 +1,6 @@
 # SECCION 003 D
-# V 1
-# fecha: 28/05
+# V 1.1
+# fecha: 30/05
 # hagan los ejercicios
 
 """
