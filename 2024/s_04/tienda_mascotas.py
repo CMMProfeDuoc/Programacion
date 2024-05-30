@@ -1,9 +1,9 @@
-# V 01
+# V 1.2
 # 30/5
 
 """
-    1. Mostrar lista animales, enumerada, mostrando solo nombre y tipo
-        1.5. Seleccionar un animal y mostrar los detalles
+    ✔ 1. Mostrar lista animales, enumerada, mostrando solo nombre y tipo
+    ✔    1.5. Seleccionar un animal y mostrar los detalles
 
     2. Filtrar animal segun el tipo (ingresado por usuario)
 
@@ -56,5 +56,42 @@ lista_animales = [
     },
 ]
 
-for animal in lista_animales:
-    print(animal)
+opciones_menu = [
+    'salir',
+    'seleccionar y mostrar detalle',
+    'filtrar por TIPO',
+    'agregar (WIP)',
+]
+
+while (True):
+    for i, opcion in enumerate(opciones_menu):
+        print(i, opcion)
+    sel_opcion = int(input(">> "))
+
+    if (sel_opcion == 0):
+        break
+
+    #1 - mostrar y seleccionar
+    if (sel_opcion == 1):
+        for i, animal in enumerate(lista_animales):
+            print(i+1,'. ', animal['nombre'],' => ',animal['tipo'], sep='')
+
+        sel = int(input(">> "))-1
+        animalSel = lista_animales[sel]
+        for key in animalSel:
+            print(key,'=>',animalSel[key])    
+
+
+    #2 - filtrar por tipo
+    if (sel_opcion == 2):
+        lista_filtrada = []
+        filtro = input("ingrese <tipo> filtro: ").lower()
+        for animal in lista_animales:
+            if (animal['tipo'] == filtro):
+                lista_filtrada.append(animal)
+
+        for i, animal in enumerate(lista_filtrada):
+            print(i+1,'. ', animal['nombre'],' => ',animal['tipo'], sep='')
+
+    if (sel_opcion == 3):
+        print("trabajo en progreso")
