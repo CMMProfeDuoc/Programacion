@@ -2,10 +2,12 @@
 # 30/5
 
 """
+    4. Añadir prevencion de errores al seleccionar cosas del menu
+
     ✔ 1. Mostrar lista animales, enumerada, mostrando solo nombre y tipo
     ✔    1.5. Seleccionar un animal y mostrar los detalles
 
-    2. Filtrar animal segun el tipo (ingresado por usuario)
+    ✔ 2. Filtrar animal segun el tipo (ingresado por usuario)
 
     3. Agregar un animal, que debe tener, por lo menos, los sig atributos
     nombre, tipo, color, peso
