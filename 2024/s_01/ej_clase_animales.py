@@ -1,6 +1,6 @@
 # SECCION 001 D
-# V 1.3
-# fecha: 31/05
+# V 1.5
+# fecha: 27/05
 # hagan los ejercicios
 
 """
@@ -9,15 +9,22 @@
     Se detiene el ingreso luego de 5 animales.
     Luego, muestre los animales listados.
 
-    - Crear menu para seleeccionar de estos items:
+    ✔ Crear menu para seleeccionar de estos items:
+
+    > Al filtrar o seleccionar animales, guardarlos en una lista separada
 
         ✔ Mostrar la lista numerada de animales (para poder seleccionar)
         ✔ Poder 'filtrar' la lista de animales
-        - Poder seleccionar y modificar el dato de un animal
+        > Mostrar lista de animales seleccionados
+        > Poder seleccionar y modificar el dato de un animal
         - Poder agregar datos extra a un animal (seleccionado)
         - Poder seleccionar usando un nombre
         - Agregar Animal
+
+        
 """
+
+from os import system
 
 lista_animales = [
     {
@@ -62,9 +69,16 @@ opciones_menu = [
     'salir', #0
     'mostrar lista numerada', #1
     'filtrar por nombre', #2
+    'mostrar lista de animales guardados', #3
 ]
 
+animales_guardados = []
+
 while (True):
+
+    # limpar pantalla
+    system('cls') #solo funciona en windows
+
     for i, opcion in enumerate(opciones_menu):
         print(i, opcion)
 
@@ -78,12 +92,20 @@ while (True):
 
     #mostrar lista numerada
     if (sel == 1):
-        print('ID | Nombre | Tipo | Peso | Color')
         for i, animal in enumerate(lista_animales):
-            print(i,'.',end=' ')
-            for dato in animal.values():
-                print(dato,end=' | ')
-            print()
+            print(i+1, animal['nombre'],' | ',animal['tipo'])
+        
+        sel = int(input('>> '))-1
+        animal = lista_animales[sel]
+        if (animal not in animales_guardados):
+            animales_guardados.append(animal)
+        else:
+            print('animal ya esta guardado')
+
+        print('ID | Nombre | Tipo | Peso | Color')
+        for dato in animal.values():
+            print(dato,end=' | ')
+        continue
 
     #filtrar por nombre
     if (sel == 2):
@@ -101,5 +123,10 @@ while (True):
             for dato in animal.values():
                 print(dato,end=' | ')
             print()
+        continue
+    
+    if (sel == 3):
+        for i,animal in enumerate(animales_guardados):
+            print(i, animal['nombre'])
 
     print()
