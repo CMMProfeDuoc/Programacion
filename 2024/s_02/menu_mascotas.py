@@ -1,6 +1,6 @@
 # SECCION 002 D
-# V 4.5
-# fecha: 30/05
+# V 5
+# fecha: 31/05
 # hagan los ejercicios
 
 """
@@ -32,13 +32,13 @@
             - mostrar la lista
             - seleccionar que cosa eliminar
 
-    - Modificar el dato de un animal
-
-    - Agregar un dato (llave : valor) a un animal           
+    😶 Modificar el dato de un animal
+        - Agregar un dato (llave : valor) a un animal           
 
     
 
 """
+import os
 
 def mostrarLista (lista:list) -> None:
     for i, elemento in enumerate(lista):
@@ -62,6 +62,16 @@ def mostarMenu (opciones_menu : dict) -> str:
         print(key,'=>',opciones_menu[key])
     selec = input('>> ').lower()
     return selec
+
+def mostrarAndSelectAnimal (lista:list, desfase:int=0) -> dict:
+    mostrarAnimalLista(lista)
+    sel = selOpcion(lista,desfase)
+    dict_sel = lista[sel]
+    return dict_sel
+
+def mostrarDetalle (diccionario:dict) -> None:
+    for key in diccionario.keys():
+        print(key,': ',diccionario[key],sep='')
 
 lista_animales = [
     {
@@ -129,20 +139,29 @@ lista_animales = [
 animales_guardados = []
 
 opciones_menu = {
-    'salir' : ['salir', 's'],
-    'ver animales' : ['ver','v','mostrar'],
-    'filtrar' : ['f','filtro']
+
+    'salir'         : ['salir', 's'],
+    'ver_animales'  : ['ver','v','mostrar'],
+    'filtrar'       : ['f','filtro'],
+    'agregar'       : ['a','agregar'],
+    'ver_guardados' : ['g','ver_guardados','guardados'],
+    'modificar'     : ['m','modificar']
+
 }
 
 
 
 while (True): #WHILE MENU
+    os.system('cls')
+
     sel = mostarMenu(opciones_menu)
+
+    os.system('cls')
 
     if (sel in opciones_menu['salir']):
         break
     
-    if (sel in opciones_menu['ver animales']):
+    if (sel in opciones_menu['ver_animales']):
         mostrarAnimalLista(lista_animales)
         print()
         sel = selOpcion(lista_animales,1)
@@ -156,8 +175,7 @@ while (True): #WHILE MENU
             animales_guardados.append(animal_seleccionado)
 
         continue            
-    #end if 0
-
+    
     if (sel in opciones_menu['filtrar']):
         lista_filtrada = []
         filtro = input('ingrese tipo a filtrar: ').lower()
@@ -168,10 +186,8 @@ while (True): #WHILE MENU
         print()
         input() # pausa
         continue
-    #end if 1
-        
-    #agregar animal a la lista
-    if (sel == 3):
+      
+    if (sel in opciones_menu['agregar']):
         #Falta crear validacion de datos
         lista_animales.append(
             {
@@ -182,9 +198,23 @@ while (True): #WHILE MENU
             }
         )
 
-    if (sel == 4):
+    if (sel in opciones_menu['ver_guardados']):
         mostrarAnimalLista(animales_guardados)
         continue
 
+    if (sel in opciones_menu['modificar']):
+        print("MODIFICAR")
+        if (animales_guardados == []):
+            print('No hay animales para modificar. seleccionar un animal')
+            continue
+        
+        animal = mostrarAndSelectAnimal(animales_guardados,1)
+        mostrarDetalle(animal)
+        animal.update({
+            input('ingrese llave a modificar: ') : input('ingrese valor: ')
+        })
+
+
     if (sel not in opciones_menu.values()):
         print('tonoto')
+
