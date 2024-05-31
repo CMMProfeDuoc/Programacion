@@ -57,6 +57,12 @@ def selOpcion (lista:list,desfase:int=0) -> int:
                 break
     return sel
 
+def mostarMenu (opciones_menu : dict) -> str:
+    for key in opciones_menu.keys():
+        print(key,'=>',opciones_menu[key])
+    selec = input('>> ').lower()
+    return selec
+
 lista_animales = [
     {
         'nombre': 'pepito',
@@ -122,22 +128,21 @@ lista_animales = [
 
 animales_guardados = []
 
-opciones_menu = [
-    'salir', #con 0 se sale
-    'mostrar lista animales y seleccionar',
-    'seleccionar por tipo',
-    'agregar animales',
-    'mostrar animales guardados'
-]
+opciones_menu = {
+    'salir' : ['salir', 's'],
+    'ver animales' : ['ver','v','mostrar'],
+    'filtrar' : ['f','filtro']
+}
+
+
 
 while (True): #WHILE MENU
-    mostrarLista(opciones_menu)
-    sel = selOpcion(opciones_menu)
+    sel = mostarMenu(opciones_menu)
 
-    if (sel==0):
+    if (sel in opciones_menu['salir']):
         break
     
-    if (sel == 1):
+    if (sel in opciones_menu['ver animales']):
         mostrarAnimalLista(lista_animales)
         print()
         sel = selOpcion(lista_animales,1)
@@ -153,7 +158,7 @@ while (True): #WHILE MENU
         continue            
     #end if 0
 
-    if (sel == 2):
+    if (sel in opciones_menu['filtrar']):
         lista_filtrada = []
         filtro = input('ingrese tipo a filtrar: ').lower()
         for animal in lista_animales:
@@ -180,3 +185,6 @@ while (True): #WHILE MENU
     if (sel == 4):
         mostrarAnimalLista(animales_guardados)
         continue
+
+    if (sel not in opciones_menu.values()):
+        print('tonoto')
