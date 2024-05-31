@@ -1,6 +1,6 @@
 # SECCION 001 D
 # V 1.5
-# fecha: 27/05
+# fecha: 31/05
 # hagan los ejercicios
 
 """
@@ -15,8 +15,8 @@
 
         ✔ Mostrar la lista numerada de animales (para poder seleccionar)
         ✔ Poder 'filtrar' la lista de animales
-        > Mostrar lista de animales seleccionados
-        > Poder seleccionar y modificar el dato de un animal
+        ✔ Mostrar lista de animales seleccionados
+            > Poder seleccionar y modificar el dato de un animal
         - Poder agregar datos extra a un animal (seleccionado)
         - Poder seleccionar usando un nombre
         - Agregar Animal
@@ -127,6 +127,21 @@ while (True):
     
     if (sel == 3):
         for i,animal in enumerate(animales_guardados):
-            print(i, animal['nombre'])
+            print(i+1, animal['nombre'])
+        print('seleccione animal para ver detalles y modificar')
+        sel = int(input('>> '))-1
+        animal = animales_guardados[sel]
+        for llave in animal.keys():
+            print(llave,'=>',animal[llave])
+        print('escriba la llave a modificar o agregar')
+        llave = input('>> ').lower()
+        valor = input('valor: ')
+        animales_guardados[sel][llave] = valor
 
+        #modificar el dato en la lista original
+        for animal in lista_animales:
+            if (animal['nombre'] == animales_guardados[sel]['nombre']):
+                animal[llave] = valor
+        # no usar nombre como ID !!
+        # crear llave ID
     print()
