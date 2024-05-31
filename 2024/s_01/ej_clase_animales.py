@@ -1,6 +1,6 @@
 # SECCION 001 D
-# V 1.2
-# fecha: 27/05
+# V 1.3
+# fecha: 31/05
 # hagan los ejercicios
 
 """
@@ -9,11 +9,14 @@
     Se detiene el ingreso luego de 5 animales.
     Luego, muestre los animales listados.
 
-    1. Mostrar la lista numerada de animales (para poder seleccionar)
-    2. Poder 'filtrar' la lista de animales
-    3. Poder seleccionar y modificar el dato de un animal
-    4. Poder agregar datos extra a un animal (seleccionado)
-    5. Poder seleccionar usando un nombre
+    - Crear menu para seleeccionar de estos items:
+
+        ✔ Mostrar la lista numerada de animales (para poder seleccionar)
+        ✔ Poder 'filtrar' la lista de animales
+        - Poder seleccionar y modificar el dato de un animal
+        - Poder agregar datos extra a un animal (seleccionado)
+        - Poder seleccionar usando un nombre
+        - Agregar Animal
 """
 
 lista_animales = [
@@ -54,43 +57,49 @@ lista_animales = [
         'color' : 'blanco',
     },
 ]
-max_animales = 2
 
-for i in range(max_animales):
-    lista_animales.append(
-        {
-            'nombre': input('ingrese nombre: '),
-            'tipo' : input('Ingrese tipo: '),
-            'peso' : float(input('ingrese peso: ')), 
-            'color' : input('color: '),
-        }
-    )
+opciones_menu = [
+    'salir', #0
+    'mostrar lista numerada', #1
+    'filtrar por nombre', #2
+]
+
+while (True):
+    for i, opcion in enumerate(opciones_menu):
+        print(i, opcion)
+
+    sel = int(input('>> '))
+
+    print('-'*10)
     print()
 
-print('-'*10)
-print()
+    if (sel == 0):
+        break
 
-#mostrar lista numerada
-print('ID | Nombre | Tipo | Peso | Color')
-for i, animal in enumerate(lista_animales):
-    print(i,'.',end=' ')
-    for dato in animal.values():
-        print(dato,end=' | ')
+    #mostrar lista numerada
+    if (sel == 1):
+        print('ID | Nombre | Tipo | Peso | Color')
+        for i, animal in enumerate(lista_animales):
+            print(i,'.',end=' ')
+            for dato in animal.values():
+                print(dato,end=' | ')
+            print()
+
+    #filtrar por nombre
+    if (sel == 2):
+        filtro = input('ingrese nombre a filtrar: ')
+        llave_filtro = 'nombre'
+        lista_filtrada = []
+        for animal in lista_animales:
+            if (filtro in animal[llave_filtro]):
+                lista_filtrada.append(animal)
+
+        print("LISTA FILTRADA")
+        print('ID | Nombre | Tipo | Peso | Color')
+        for i, animal in enumerate(lista_filtrada):
+            print(i,'.',end=' ')
+            for dato in animal.values():
+                print(dato,end=' | ')
+            print()
+
     print()
-
-#filtrar por nombre
-filtro = input('ingrese nombre a filtrar: ')
-llave_filtro = 'nombre'
-lista_filtrada = []
-for animal in lista_animales:
-    if (filtro in animal[llave_filtro]):
-        lista_filtrada.append(animal)
-
-print("LISTA FILTRADA")
-print('ID | Nombre | Tipo | Peso | Color')
-for i, animal in enumerate(lista_filtrada):
-    print(i,'.',end=' ')
-    for dato in animal.values():
-        print(dato,end=' | ')
-    print()
-
