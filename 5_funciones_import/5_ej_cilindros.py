@@ -14,6 +14,14 @@ Retornar -1
 Se le otorgara una lista de diccionarios con las mediadas de los cilindros
 """
 
+def areaCirculo (radio:float) -> float:
+    area = radio * radio * 3.1415
+    return area
+
+def areaCilindro (radio:float, altura:float) -> float:
+    area = areaCirculo(radio) * altura
+    return area
+
 lista_cilindros = [
     {
         'radio':5,
@@ -28,3 +36,9 @@ lista_cilindros = [
         'altura':18,
     },
 ]
+
+for cilindro in lista_cilindros:
+    cilindro.update({
+        'area':areaCilindro(cilindro['radio'],cilindro['altura'])
+    })
+    print(cilindro)
