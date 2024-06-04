@@ -7,25 +7,29 @@
 
     Luego use la Fx anterior para calcular el area
     del cilindro
-    Acilindro = (2 * A_circulo) + (altura * radio)
+    Acilindro = (2 * A_circulo) + (altura * radio * 2 * 3.1415)
 
     El usuario ingresa la altura y el radio
 """
 
-def areaCirculo (radio:float) -> float:
-    area = radio * radio * 3.1415
+def area_circulo (radio:float) -> float:
+    area = radio * radio * 3.14159
     return area
 
-def areaCilindro (radio:float, altura:float) -> float:
-    area = (2 * areaCirculo(radio)) + (radio * altura)
+def circunferencia (radio:float) -> float:
+    circ = radio * 2 * 3.14159
+    return circ
+
+def area_cilindro (radio:float, altura:float) -> float:
+    area = (2 * area_circulo(radio)) + (altura * circunferencia(radio))
     return area
 
 
 cilindro = {
-    'radio' : float(input('radio: ')),
-    'altura' : float(input('altura: '))
+    'radio':float(input('ingrese radio: ')),
+    'altura':float(input('ingrese altura: ')),
 }
 
-cilindro['area'] = areaCilindro(cilindro['radio'],cilindro['altura'])
+cilindro['area'] = area_cilindro(cilindro['radio'],cilindro['altura'])
 
 print(cilindro)
