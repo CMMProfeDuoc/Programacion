@@ -6,11 +6,23 @@
 """
     ✔ 1. Mostrar la lista numerada de animales (para poder seleccionar)
     
-    ✔ 2. Poder 'filtrar' la lista de animales, segun el tipo
+    >> Crear funcion para filtrar por llave
+        La funcion recibe una lista y un filtro
+        Y devuelve una lista con los elementos filtrados
+        (recordar que los elementos no se pueden repetir)
 
     3. Agregar animales a la lista (deben tener los mismos datos,
     nombre, tipo, peso, color)
 """
+
+def mostrarListaAnimales (
+        lista_animales:list[dict],
+        nombre_lista:str,
+        ) -> None:
+    print('--',nombre_lista,'--')
+    for i, animal in enumerate(lista_animales):
+        print(i, animal['nombre'])
+    print('-'*10)
 
 lista_animales = [
     {
@@ -88,8 +100,7 @@ while (True):
 
     #1
     #mostrar animales de la lista
-    for i, animal in enumerate(lista_animales):
-        print(i+1,'. ',animal['nombre'],' | ',animal['tipo'], sep='')
+    mostrarListaAnimales(lista_animales,'Animales')
 
     if (sel == 1):
         #1 seleccionar un animal y mostrar detalle
@@ -111,8 +122,7 @@ while (True):
             if (animal['tipo'].lower() in filtro):
                 lista_filtrada.append(animal)
         print('-'*10)
-        for i, animal in enumerate(lista_filtrada):
-            print(i+1,'. ',animal['nombre'],' | ',animal['tipo'], sep='')
+        mostrarListaAnimales(lista_filtrada,'Resultado')
 
     if (sel == 0):
         print("adios")
