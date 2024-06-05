@@ -1,5 +1,5 @@
 # SECCION 001 D
-# V 1.5
+# V 1.6
 # fecha: 31/05
 # hagan los ejercicios
 
@@ -15,6 +15,7 @@
 
         ✔ Mostrar la lista numerada de animales (para poder seleccionar)
         ✔ Poder 'filtrar' la lista de animales
+            > Crear funcion para filtrar por cualquier llave (el usuario selecciona)
         ✔ Mostrar lista de animales seleccionados
             > Poder seleccionar y modificar el dato de un animal
         - Poder agregar datos extra a un animal (seleccionado)
@@ -25,6 +26,12 @@
 """
 
 from os import system
+
+def imprimirListaAnimales (lista_animales:list[dict], nombre_lista:str = 'Lista Animales') -> None:
+    print('--',nombre_lista,'--')
+    for i, animal in enumerate(lista_animales):
+        print(i+1,animal['nombre'])
+    print('-'*10)
 
 lista_animales = [
     {
@@ -92,8 +99,7 @@ while (True):
 
     #mostrar lista numerada
     if (sel == 1):
-        for i, animal in enumerate(lista_animales):
-            print(i+1, animal['nombre'],' | ',animal['tipo'])
+        imprimirListaAnimales(lista_animales)
         
         sel = int(input('>> '))-1
         animal = lista_animales[sel]
@@ -116,18 +122,11 @@ while (True):
             if (filtro in animal[llave_filtro]):
                 lista_filtrada.append(animal)
 
-        print("LISTA FILTRADA")
-        print('ID | Nombre | Tipo | Peso | Color')
-        for i, animal in enumerate(lista_filtrada):
-            print(i,'.',end=' ')
-            for dato in animal.values():
-                print(dato,end=' | ')
-            print()
+        imprimirListaAnimales(lista_filtrada,'Resultado Busqueda')
         continue
     
     if (sel == 3):
-        for i,animal in enumerate(animales_guardados):
-            print(i+1, animal['nombre'])
+        imprimirListaAnimales(animales_guardados,'Animales Guardados')
         print('seleccione animal para ver detalles y modificar')
         sel = int(input('>> '))-1
         animal = animales_guardados[sel]
