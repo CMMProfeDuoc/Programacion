@@ -1,6 +1,6 @@
 # SECCION 001 D
-# V 1.6
-# fecha: 31/05
+# V 1.7
+# fecha: 5/6
 # hagan los ejercicios
 
 """
@@ -21,8 +21,6 @@
         - Poder agregar datos extra a un animal (seleccionado)
         - Poder seleccionar usando un nombre
         - Agregar Animal
-
-        
 """
 
 from os import system
@@ -72,12 +70,12 @@ lista_animales = [
     },
 ]
 
-opciones_menu = [
-    'salir', #0
-    'mostrar lista numerada', #1
-    'filtrar por nombre', #2
-    'mostrar lista de animales guardados', #3
-]
+opciones_menu = {
+    'salir':['s','salir','chao'],
+    'ver animales':['v','ver'],
+    'filtrar (por nombre)':['f','filtrar'],
+    'ver detalle':['d']
+}
 
 animales_guardados = []
 
@@ -86,19 +84,23 @@ while (True):
     # limpar pantalla
     system('cls') #solo funciona en windows
 
-    for i, opcion in enumerate(opciones_menu):
-        print(i, opcion)
 
-    sel = int(input('>> '))
+    for opcion in opciones_menu.keys():
+        print (opcion,' => ',opciones_menu[opcion])
+
+    print('ingrese un comando: ')
+    sel = input('>> ')
 
     print('-'*10)
     print()
 
-    if (sel == 0):
+    if (sel in opciones_menu['salir']):
+        if (sel == 'chao'):
+            print('hasta la proxima!')
         break
 
     #mostrar lista numerada
-    if (sel == 1):
+    if (sel in opciones_menu['ver animales']):
         imprimirListaAnimales(lista_animales)
         
         sel = int(input('>> '))-1
@@ -114,7 +116,7 @@ while (True):
         continue
 
     #filtrar por nombre
-    if (sel == 2):
+    if (sel in opciones_menu['filtrar (por nombre)']):
         filtro = input('ingrese nombre a filtrar: ')
         llave_filtro = 'nombre'
         lista_filtrada = []
@@ -125,7 +127,7 @@ while (True):
         imprimirListaAnimales(lista_filtrada,'Resultado Busqueda')
         continue
     
-    if (sel == 3):
+    if (sel in opciones_menu['ver detalle']):
         imprimirListaAnimales(animales_guardados,'Animales Guardados')
         print('seleccione animal para ver detalles y modificar')
         sel = int(input('>> '))-1
