@@ -1,6 +1,6 @@
 # SECCION 003 D
-# V 1.1
-# fecha: 30/05
+# V 1.3
+# fecha: 5/6
 # hagan los ejercicios
 
 """
@@ -14,6 +14,14 @@
     3. Agregar animales a la lista (deben tener los mismos datos,
     nombre, tipo, peso, color)
 """
+
+def seleccionMenu (menu:dict) -> str:
+    for opcion in menu.keys():
+        print(opcion, '=>', menu[opcion])
+
+    opc_sel = input('ingrese comando: ')
+    return opc_sel
+
 
 def mostrarListaAnimales (
         lista_animales:list[dict],
@@ -81,28 +89,23 @@ lista_animales = [
     },
 ]
 
-opciones_menu = [
-    'salir',
-    'mostrar y seleccionar',
-    'filtrar por tipo',
-    'agregar (WIP)',
-]
 
-while (True):
-    for i, opcion in enumerate(opciones_menu):
-        print(i, opcion)
 
-    while (True):
-        sel = int(input(">> "))
-        if (sel in range(len(opciones_menu))):
-            #ARREGLAR BUG DE SELECCION DE MENU
-            break
 
-    #1
-    #mostrar animales de la lista
-    mostrarListaAnimales(lista_animales,'Animales')
+while (True): #programa
 
-    if (sel == 1):
+    opciones_menu = {
+        'salir':['s','salir','chao'],
+        'ver animales':['v','ver'],
+        'filtrar':['/f','f','filtrar','filter']
+    }
+
+    sel = seleccionMenu(opciones_menu)
+
+    if (sel in opciones_menu['ver animales']):
+        #1
+        #mostrar animales de la lista
+        mostrarListaAnimales(lista_animales,'Animales')
         #1 seleccionar un animal y mostrar detalle
         while (True):
             sel = int(input(">> "))-1
@@ -113,7 +116,7 @@ while (True):
                 print('-'*10)
                 break
 
-    if (sel == 2):
+    if (sel in opciones_menu['filtrar']):
         #2 - filtar
         print('Filtrar: ')
         lista_filtrada = []
@@ -124,6 +127,6 @@ while (True):
         print('-'*10)
         mostrarListaAnimales(lista_filtrada,'Resultado')
 
-    if (sel == 0):
+    if (sel in opciones_menu['salir']):
         print("adios")
         break
