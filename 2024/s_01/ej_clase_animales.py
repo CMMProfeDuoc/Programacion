@@ -1,6 +1,6 @@
 # SECCION 001 D
 # V 1.7
-# fecha: 5/6
+# fecha: 
 # hagan los ejercicios
 
 """
@@ -15,7 +15,7 @@
 
         ✔ Mostrar la lista numerada de animales (para poder seleccionar)
         ✔ Poder 'filtrar' la lista de animales
-            > Crear funcion para filtrar por cualquier llave (el usuario selecciona)
+            >> Crear funcion para filtrar por cualquier llave (el usuario selecciona)
         ✔ Mostrar lista de animales seleccionados
             > Poder seleccionar y modificar el dato de un animal
         - Poder agregar datos extra a un animal (seleccionado)
@@ -25,11 +25,34 @@
 
 from os import system
 
+def pausa () -> None:
+    input('presione enter para continuar...')
+
 def imprimirListaAnimales (lista_animales:list[dict], nombre_lista:str = 'Lista Animales') -> None:
     print('--',nombre_lista,'--')
     for i, animal in enumerate(lista_animales):
         print(i+1,animal['nombre'])
     print('-'*10)
+
+def filtrar (lista:list[dict], filtro:str, llave:str='nombre') -> list:
+    lista_filtrada = []
+    for elemento in lista:
+        if (str(elemento[llave]) in str(filtro)):
+            lista_filtrada.append(elemento)
+    return lista_filtrada
+
+def filtrarTodo (lista:list[dict], filtro:str) -> list:
+    lista_filtrada = []
+    lista_aux = []
+    for elemento in lista:
+        for llave in elemento.keys():
+            lista_aux += filtrar(lista,filtro,llave)
+    
+    for elemento in lista_aux:
+        if (elemento not in lista_filtrada):
+            lista_filtrada.append(elemento)
+
+    return lista_filtrada
 
 lista_animales = [
     {
@@ -68,12 +91,19 @@ lista_animales = [
         'peso' : 200, 
         'color' : 'blanco',
     },
+    {
+        'nombre':'Luciano',
+        'tipo':'mandril',
+        'color':'blano con pelo negro',
+        'peso':400,
+        #'lentes':True, #solucionar esto   
+    }
 ]
 
 opciones_menu = {
     'salir':['s','salir','chao'],
     'ver animales':['v','ver'],
-    'filtrar (por nombre)':['f','filtrar'],
+    'filtrar':['f','filtrar'],
     'ver detalle':['d']
 }
 
@@ -115,16 +145,14 @@ while (True):
             print(dato,end=' | ')
         continue
 
-    #filtrar por nombre
-    if (sel in opciones_menu['filtrar (por nombre)']):
-        filtro = input('ingrese nombre a filtrar: ')
-        llave_filtro = 'nombre'
-        lista_filtrada = []
-        for animal in lista_animales:
-            if (filtro in animal[llave_filtro]):
-                lista_filtrada.append(animal)
-
+    #filtrar
+    if (sel in opciones_menu['filtrar']):
+        lista_filtrada = filtrarTodo(
+            lista_animales,
+            input('ingrese filtro: ')
+        )
         imprimirListaAnimales(lista_filtrada,'Resultado Busqueda')
+        pausa()
         continue
     
     if (sel in opciones_menu['ver detalle']):
