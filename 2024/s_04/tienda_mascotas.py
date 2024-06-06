@@ -1,17 +1,5 @@
-# V 1.4
+# V 1.7
 # 6/6
-
-"""
-    4. Añadir prevencion de errores al seleccionar cosas del menu
-
-    ✔ 1. Mostrar lista animales, enumerada, mostrando solo nombre y tipo
-    ✔    1.5. Seleccionar un animal y mostrar los detalles
-
-    ✔ 2. Filtrar animal segun el tipo (ingresado por usuario)
-
-    3. Agregar un animal, que debe tener, por lo menos, los sig atributos
-    nombre, tipo, color, peso
-"""
 
 def imprimirListaAnimales (lista:list[dict], nombreLista:str='Lista') -> None:
     print('--',nombreLista,'--')
@@ -27,6 +15,17 @@ def selecItemLista (lista:list, nombreLista:str) -> int:
     while (True):
         selec = int(input('>> '))-1
         if (selec in range(len(lista))):
+            return selec
+        
+def selecItemMenu (menu:dict, nombreMenu:str='Menu') -> int:
+    #llave : int(valor)
+    print('--',nombreMenu,'--')
+    for opcion in menu.keys():
+        print(menu[opcion], opcion)
+
+    while(True):
+        selec = int(input('>> '))
+        if (selec in menu.values()):
             return selec
         
 def filtrarListaDict (lista:list[dict], llave:str, filtro:str) -> list[dict]:
@@ -81,21 +80,24 @@ lista_animales = [
     },
 ]
 
-opciones_menu = [
-    'salir',
-    'seleccionar y mostrar detalle',
-    'filtrar por TIPO',
-    'agregar (WIP)',
-]
+opciones_menu = {
+    'salir':0,
+    'seleccionar Animales':1,
+    'ver Detalles':2, #de lista de animales 'seleccionados, elegir y mostrar detalles'
+    'modificar datos':3, #<<<<<
+    'eliminar':4, #<<
+    'filtrar':5,
+    'agregar (WIP)':6, #<<
+}
 
 while (True):
-    sel_opcion = selecItemLista(opciones_menu,'Menu')
+    sel_opcion = selecItemMenu(opciones_menu)
 
-    if (sel_opcion == 0):
+    if (sel_opcion == opciones_menu['salir']):
         break
 
     #1 - mostrar y seleccionar
-    if (sel_opcion == 1):
+    if (sel_opcion == opciones_menu['seleccionar Animales']):
         imprimirListaAnimales(lista_animales,'Animales')
 
         sel = int(input(">> "))-1
@@ -105,7 +107,7 @@ while (True):
 
 
     #2 - filtrar por tipo
-    if (sel_opcion == 2):
+    if (sel_opcion == opciones_menu['filtrar']):
         lista_filtros = ['nombre','color','tipo','peso']
         sel_filtro = selecItemLista(lista_filtros,'Llaves Busqueda')
         lista_filtrada = filtrarListaDict(
@@ -116,5 +118,16 @@ while (True):
         imprimirListaAnimales(lista_filtrada,'Resultado Filtro')
 
 
-    if (sel_opcion == 3):
+    if (sel_opcion == opciones_menu['agregar (WIP)']):
         print("trabajo en progreso")
+
+    if (sel_opcion == opciones_menu['eliminar']):
+        print('WIP')
+
+    if (sel_opcion == opciones_menu['modificar datos']):
+        animal_selec = lista_animales[selecItemLista(lista_animales,'Seleccionar')]
+        print('seleccione opcion a modificar')
+        lista_llaves = list(animal_selec.keys())
+        op_modificar = selecItemLista(lista_llaves,'Llaves a Modificar')
+        print('Modificar:')
+        animal_selec[lista_llaves[op_modificar]] = input('>> ')
