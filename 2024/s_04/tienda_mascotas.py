@@ -1,4 +1,4 @@
-# V 1.7
+# V 1.7.1
 # 6/6
 
 def imprimirListaAnimales (lista:list[dict], nombreLista:str='Lista') -> None:
@@ -128,6 +128,6 @@ while (True):
         animal_selec = lista_animales[selecItemLista(lista_animales,'Seleccionar')]
         print('seleccione opcion a modificar')
         lista_llaves = list(animal_selec.keys())
-        op_modificar = selecItemLista(lista_llaves,'Llaves a Modificar')
+        llave_mod = lista_llaves[selecItemLista(lista_llaves,'Llaves a Modificar')]
         print('Modificar:')
-        animal_selec[lista_llaves[op_modificar]] = input('>> ')
+        animal_selec[llave_mod] = input('>> ')
