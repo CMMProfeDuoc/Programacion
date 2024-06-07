@@ -2,29 +2,67 @@
 # 31/5
 # V 1.5 <-
 
-"""
-    ✔ Crear un menu para seleccionar una de las siguientes acciones:
+#import
 
-        ✔ Mostrar animales en la lista, de forma numerada, mostrando "nombre"
-        Para poder seleccionar un animal y mostrar los detalles del animal. 
+#funciones
+#filtrar, filtra cosas de una lista
+def isOnDict (diccionario:dict, filtro:str) -> bool:
+    for dato in diccionario.values():
+        if (str(filtro) in str(dato)):
+            return True
+    return False
 
-        ✔ Seleccionar un animal de la lista y guardarlo en otra lista separada, la nueva lista no puede tener repetidos.
+def superFiltro (lista_objetivo:list[dict], filtro:str) -> list[dict]:
+    lista_filtrada = []
+    for elemento in lista_objetivo:
+        if (isOnDict(elemento,filtro)):
+            lista_filtrada.append(elemento)
+    return lista_filtrada
 
-        - Filtrar animales segun el <tipo>. El <tipo> lo ingresa el usuario.
+def imprimirAnimales (lista:list[dict], nombre_lista:str='Animales') -> None:
+    print('--',nombre_lista,'--')
+    for i,elemento in enumerate(lista):
+        print(i+1,'->',elemento['nombre'])
+    print('-'*10)
 
-        - Filtrar por nombre
+#sin uso
+def filtrar (lista_objetivo:list[dict], llave_filtro:str, filtro:str) -> list[dict]:
+    lista_filtrada = []
+    for elemento in lista_objetivo:
+        if (filtro in elemento[llave_filtro]):
+            lista_filtrada.append(elemento)
+    return lista_filtrada
 
-        - Agregar animal (asegurar que el id no se repita!)
-            (el ID no lo ingresa el usuario)!!
-            El resto de datos (nombre, tipo, color) los ingresa el usuario
-    
-    >> crear más comandos.
-"""
+#obsoleto
+def filtroMultiple (lista_objetivo:list[dict], lista_llaves:list[str], filtro:str) -> list[dict]:
+    lista_filtrada = []
+    lista_sin_rep = []
+    for llave in lista_llaves:
+        lista_filtrada += filtrar(lista_objetivo,llave,filtro)
+
+    #remover repetidos
+    for elemento in lista_filtrada:
+        if (elemento not in lista_sin_rep):
+            lista_sin_rep.append(elemento)
+
+    return lista_sin_rep
+
+def pausa() -> None:
+    input('presione enter para continuar... ')
+
+#variables
+
+#instrucciones
+
 opciones_menu = {
-    'salir':['exit'],
-    'ver animales':['/ver','/v','/mirar'], #comandos!
-    'filtrar animal por tipo':['filtrar'],
-    #'agregar animal':3,
+    'salir':['exit'], #✔
+    'ver animales':['ver','v','mirar'], #✔🐱‍🐉
+    'filtrar':['f','filtrar'], # ✔ Agregar la opcion de guardar los elementos que aparecen
+    'buscar':['b'], #<<
+    'ver detalle':['detalle'], #<<
+    'agregar animal':['a'], #<<
+    'eliminar':['del'], #<<
+    'modificar':['mod'], #<<
 }
 
 lista_animales = [
@@ -80,8 +118,7 @@ while (True):
 
 
     if (selec in opciones_menu['ver animales']):
-        for i,animal in enumerate(lista_animales):
-            print(i+1, animal['nombre'])
+        imprimirAnimales(lista_animales)
 
         sel = int(input('>> '))-1
 
@@ -99,11 +136,10 @@ while (True):
             print(animal)
         print()
 
-    if (selec in opciones_menu['filtrar animal por tipo']):
-        print("EN PROGRESO")
+    if (selec in opciones_menu['filtrar']):
+        lista_filtrada = superFiltro(lista_animales,input('ingrese filtro: '))
+        imprimirAnimales(lista_filtrada,'Resultado')
+        pausa()
 
     if (selec in opciones_menu['salir']):
         break
-
-    if (selec not in opciones_menu.values()):
-        print('opcion invalida. tonoto')
