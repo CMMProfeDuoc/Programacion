@@ -1,0 +1,4 @@
+lechuga
+dragonite
+<no items>
+0;0;0;0;0;
