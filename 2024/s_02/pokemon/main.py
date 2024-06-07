@@ -1,4 +1,5 @@
 import funcionesPokemon as funcPkm
 
-lechuga = funcPkm.initPokemon('lechuga','dragonite','datos_lechuga.txt')
-pepito = funcPkm.initPokemon('pepito','skitty','datos_pepito.txt')
+mi_pkm = funcPkm.getPokemon('datos_pepito.txt')
+
+print(mi_pkm['attributos']['hp'])

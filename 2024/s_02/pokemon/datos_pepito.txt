@@ -1,4 +1,9 @@
 pepito
 skitty
+normal
+0
+1
 <no items>
 0;0;0;0;0;
+100;10;5;
+placaje;
