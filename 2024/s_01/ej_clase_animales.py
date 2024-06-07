@@ -1,6 +1,6 @@
 # SECCION 001 D
-# V 1.7
-# fecha: 
+# V 1.8
+# fecha: 7/6
 # hagan los ejercicios
 
 """
@@ -15,7 +15,7 @@
 
         ✔ Mostrar la lista numerada de animales (para poder seleccionar)
         ✔ Poder 'filtrar' la lista de animales
-            >> Crear funcion para filtrar por cualquier llave (el usuario selecciona)
+            ✔ Crear funcion para filtrar por cualquier llave (el usuario selecciona)
         ✔ Mostrar lista de animales seleccionados
             > Poder seleccionar y modificar el dato de un animal
         - Poder agregar datos extra a un animal (seleccionado)
@@ -53,6 +53,13 @@ def filtrarTodo (lista:list[dict], filtro:str) -> list:
             lista_filtrada.append(elemento)
 
     return lista_filtrada
+
+def selAnimal (animales:list[dict], nombre_lista:str='Animales') -> dict:
+    imprimirListaAnimales(animales,nombre_lista)
+    while (True):
+        sel = int(input('>> '))
+        if (sel in range(len(animales))):
+            return animales[sel]
 
 lista_animales = [
     {
@@ -104,7 +111,8 @@ opciones_menu = {
     'salir':['s','salir','chao'],
     'ver animales':['v','ver'],
     'filtrar':['f','filtrar'],
-    'ver detalle':['d']
+    'ver detalle':['d'],
+    'ver animales guardados':['g']
 }
 
 animales_guardados = []
@@ -131,10 +139,7 @@ while (True):
 
     #mostrar lista numerada
     if (sel in opciones_menu['ver animales']):
-        imprimirListaAnimales(lista_animales)
-        
-        sel = int(input('>> '))-1
-        animal = lista_animales[sel]
+        animal = selAnimal(lista_animales,'Lista Animales')
         if (animal not in animales_guardados):
             animales_guardados.append(animal)
         else:
@@ -151,7 +156,11 @@ while (True):
             lista_animales,
             input('ingrese filtro: ')
         )
-        imprimirListaAnimales(lista_filtrada,'Resultado Busqueda')
+        animal_sel = selAnimal(lista_filtrada,'Resultado')
+        if (animal not in animales_guardados):
+            animales_guardados.append(animal)
+        else:
+            print('animal ya esta guardado')
         pausa()
         continue
     
@@ -174,3 +183,7 @@ while (True):
         # no usar nombre como ID !!
         # crear llave ID
     print()
+
+    if (sel in opciones_menu['ver animales guardados']):
+        imprimirListaAnimales(animales_guardados,'Guardados')
+        input('presione enter para continuar... ')
