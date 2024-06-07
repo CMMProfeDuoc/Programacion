@@ -1,27 +1,7 @@
 # SECCION 001 D
-# V 1.8
+# V 1.8.2
 # fecha: 7/6
 # hagan los ejercicios
-
-"""
-    Cree un programa que permita ingresar animales a una tienda de mascotas. Los animales tienen los siguientes atributos:
-    nombre, tipo, peso, color
-    Se detiene el ingreso luego de 5 animales.
-    Luego, muestre los animales listados.
-
-    ✔ Crear menu para seleeccionar de estos items:
-
-    > Al filtrar o seleccionar animales, guardarlos en una lista separada
-
-        ✔ Mostrar la lista numerada de animales (para poder seleccionar)
-        ✔ Poder 'filtrar' la lista de animales
-            ✔ Crear funcion para filtrar por cualquier llave (el usuario selecciona)
-        ✔ Mostrar lista de animales seleccionados
-            > Poder seleccionar y modificar el dato de un animal
-        - Poder agregar datos extra a un animal (seleccionado)
-        - Poder seleccionar usando un nombre
-        - Agregar Animal
-"""
 
 from os import system
 
@@ -108,11 +88,13 @@ lista_animales = [
 ]
 
 opciones_menu = {
-    'salir':['s','salir','chao'],
-    'ver animales':['v','ver'],
-    'filtrar':['f','filtrar'],
-    'ver detalle':['d'],
-    'ver animales guardados':['g']
+    'salir':['s','salir','chao'], # ✔
+    'ver animales':['v','ver'], # ✔
+    'filtrar':['f','filtrar'], # ✔
+    'ver detalle':['d'], # ✔ << simplificar / mejorar
+    'ver animales guardados':['g'], # ✔
+    'eliminar animal':['del'], # <<<
+    'modificar animal':['mod'] # <<<
 }
 
 animales_guardados = []
