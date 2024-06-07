@@ -1,5 +1,5 @@
 # SECCION 001 D
-# V 1.8.2
+# V 1.9
 # fecha: 7/6
 # hagan los ejercicios
 
@@ -7,6 +7,10 @@ from os import system
 
 def pausa () -> None:
     input('presione enter para continuar...')
+
+def detalleAnimal (animal:dict) -> None:
+    for k in animal.keys():
+        print(k,'=>',animal[k])
 
 def imprimirListaAnimales (lista_animales:list[dict], nombre_lista:str = 'Lista Animales') -> None:
     print('--',nombre_lista,'--')
@@ -37,7 +41,7 @@ def filtrarTodo (lista:list[dict], filtro:str) -> list:
 def selAnimal (animales:list[dict], nombre_lista:str='Animales') -> dict:
     imprimirListaAnimales(animales,nombre_lista)
     while (True):
-        sel = int(input('>> '))
+        sel = int(input('>> '))-1
         if (sel in range(len(animales))):
             return animales[sel]
 
@@ -91,10 +95,11 @@ opciones_menu = {
     'salir':['s','salir','chao'], # ✔
     'ver animales':['v','ver'], # ✔
     'filtrar':['f','filtrar'], # ✔
-    'ver detalle':['d'], # ✔ << simplificar / mejorar
+    'ver detalle':['d'], # ✔
     'ver animales guardados':['g'], # ✔
-    'eliminar animal':['del'], # <<<
-    'modificar animal':['mod'] # <<<
+    'eliminar animal':['del'], # ✔
+    'modificar animal':['mod'], # ✔
+    'modificar lista guardada': ['lista'], #<<<
 }
 
 animales_guardados = []
@@ -145,27 +150,24 @@ while (True):
             print('animal ya esta guardado')
         pausa()
         continue
-    
-    if (sel in opciones_menu['ver detalle']):
-        imprimirListaAnimales(animales_guardados,'Animales Guardados')
-        print('seleccione animal para ver detalles y modificar')
-        sel = int(input('>> '))-1
-        animal = animales_guardados[sel]
-        for llave in animal.keys():
-            print(llave,'=>',animal[llave])
-        print('escriba la llave a modificar o agregar')
-        llave = input('>> ').lower()
-        valor = input('valor: ')
-        animales_guardados[sel][llave] = valor
-
-        #modificar el dato en la lista original
-        for animal in lista_animales:
-            if (animal['nombre'] == animales_guardados[sel]['nombre']):
-                animal[llave] = valor
-        # no usar nombre como ID !!
-        # crear llave ID
     print()
 
     if (sel in opciones_menu['ver animales guardados']):
         imprimirListaAnimales(animales_guardados,'Guardados')
         input('presione enter para continuar... ')
+
+    if (sel in opciones_menu['eliminar animal']):
+        lista_animales.remove(selAnimal(lista_animales,'Eliminar animal'))
+        pausa()
+
+    if (sel in opciones_menu['modificar animal']):
+        animal_sel = selAnimal(animales_guardados,'Modificar')
+        detalleAnimal(animal_sel)
+        llave_mod = input('ingrese llave a modificar: ')
+        valor_mod = input('ingrese valor a modificar: ')
+        animal_sel[llave_mod] = valor_mod
+        pausa()
+
+    if (sel in opciones_menu['ver detalle']):
+        detalleAnimal(selAnimal(animales_guardados,'Guardados'))
+        pausa()
