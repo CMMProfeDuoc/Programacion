@@ -1,6 +1,6 @@
 # s007
-# 31/5
-# V 1.5 <-
+# 7/6
+# V 1.8 <-
 
 #import
 
@@ -25,27 +25,27 @@ def imprimirAnimales (lista:list[dict], nombre_lista:str='Animales') -> None:
         print(i+1,'->',elemento['nombre'])
     print('-'*10)
 
-#sin uso
-def filtrar (lista_objetivo:list[dict], llave_filtro:str, filtro:str) -> list[dict]:
-    lista_filtrada = []
-    for elemento in lista_objetivo:
-        if (filtro in elemento[llave_filtro]):
-            lista_filtrada.append(elemento)
-    return lista_filtrada
 
-#obsoleto
-def filtroMultiple (lista_objetivo:list[dict], lista_llaves:list[str], filtro:str) -> list[dict]:
-    lista_filtrada = []
-    lista_sin_rep = []
-    for llave in lista_llaves:
-        lista_filtrada += filtrar(lista_objetivo,llave,filtro)
+def selectAnimal (lista:list[dict],nombre_lista:str) -> dict:
+    imprimirAnimales(lista,nombre_lista)
+    while(True): #gg usuario
+        sel = int(input('>> '))-1
+        if (sel in range(len(lista))):
+            return lista[sel]
+        else:
+            print('opcion invalida... ')
 
-    #remover repetidos
-    for elemento in lista_filtrada:
-        if (elemento not in lista_sin_rep):
-            lista_sin_rep.append(elemento)
+def guardarAnimal (animal:dict, lista_objetivo:list[dict]) -> list[dict]:
+    if (animal not in lista_objetivo):
+        lista_objetivo.append(animal)
+        print('animal guardado')
+    else:
+        print('animal ya guardado')
+    return lista_objetivo
 
-    return lista_sin_rep
+def mostrarDetalleAnimal (animal:dict) -> None:
+    for key in animal.keys():
+        print(key,'=>',animal[key])
 
 def pausa() -> None:
     input('presione enter para continuar... ')
@@ -59,10 +59,11 @@ opciones_menu = {
     'ver animales':['ver','v','mirar'], #✔🐱‍🐉
     'filtrar':['f','filtrar'], # ✔ Agregar la opcion de guardar los elementos que aparecen
     'buscar':['b'], #<<
-    'ver detalle':['detalle'], #<<
+    'ver detalle':['detalle'], # ✔
     'agregar animal':['a'], #<<
     'eliminar':['del'], #<<
     'modificar':['mod'], #<<
+    'ver guardados':['g','guardados'],
 }
 
 lista_animales = [
@@ -118,27 +119,23 @@ while (True):
 
 
     if (selec in opciones_menu['ver animales']):
-        imprimirAnimales(lista_animales)
-
-        sel = int(input('>> '))-1
-
-        anm_sel = lista_animales[sel]
-        for k in anm_sel.keys():
-            print(k, anm_sel[k])
-        print('-'*10)
+        animal_selec = selectAnimal(lista_animales,'Animales')
 
         if (input('ingrese <guardar> para guardar el animal: ').lower() == 'guardar'):
-            if (anm_sel not in animales_guardados):
-                animales_guardados.append(anm_sel)
-                print('animal guardado!')
-
-        for animal in animales_guardados:
-            print(animal)
-        print()
+            animales_guardados = guardarAnimal(animal_selec,animales_guardados)
 
     if (selec in opciones_menu['filtrar']):
         lista_filtrada = superFiltro(lista_animales,input('ingrese filtro: '))
         imprimirAnimales(lista_filtrada,'Resultado')
+        pausa()
+
+    if (selec in opciones_menu['ver detalle']):
+        animal = selectAnimal(lista_animales,'Seleccionar')
+        mostrarDetalleAnimal(animal)
+        pausa()
+
+    if (selec in opciones_menu['ver guardados']):
+        imprimirAnimales(animales_guardados,'Guardados')
         pausa()
 
     if (selec in opciones_menu['salir']):
