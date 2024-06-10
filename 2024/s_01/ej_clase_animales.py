@@ -7,8 +7,9 @@ from os import system
 
 from funciones import *
 
+nombre_archivo = 'datos_gatos.csv'
 import datosAnimales
-lista_animales = datosAnimales.extraerDatosAnimales('datos_gatos.csv')
+lista_animales = datosAnimales.extraerDatosAnimales(nombre_archivo)
 
 opciones_menu = {
     'salir':['s','salir','chao'], # ✔
@@ -19,6 +20,7 @@ opciones_menu = {
     'eliminar animal':['del'], # ✔
     'modificar animal':['mod'], # ✔
     'modificar lista guardada': ['lista'], #<<<
+    'guardar Archivo':['guardar']
 }
 
 animales_guardados = []
@@ -88,4 +90,8 @@ while (True):
 
     if (sel in opciones_menu['ver detalle']):
         detalleAnimal(selAnimal(animales_guardados,'Guardados'))
+        pausa()
+
+    if (sel in opciones_menu['guardar Archivo']):
+        datosAnimales.guardarDatosAnimales(lista_animales,nombre_archivo)
         pausa()

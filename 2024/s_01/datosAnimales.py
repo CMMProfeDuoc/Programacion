@@ -34,3 +34,15 @@ def extraerDatosAnimales (nombre_archivo:str) -> list[dict]:
 
     archivo.close()
     return lista_datos_animales
+
+def guardarDatosAnimales (lista_animales:list[dict] ,nombre_archivo:str) -> None:
+    archivo = open(nombre_archivo,'w')
+
+    archivo.write('nombre;tipo;peso;color\n')
+
+    for animal in lista_animales:
+        for dato in animal.values():
+            archivo.write(str(dato)+';')
+        archivo.write('\n')
+
+    archivo.close() 
