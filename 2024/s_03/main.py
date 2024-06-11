@@ -13,7 +13,8 @@ from funciones import *
 
 import datos_animales as datos
 
-lista_animales = datos.obtenerDatos('datos_gatos.csv')
+nombre_archivo = 'datos_gatos.csv'
+lista_animales = datos.obtenerDatos(nombre_archivo)
 
 while (True): #programa
 
@@ -24,7 +25,8 @@ while (True): #programa
         'filtrar por tipo':['ft','tipo'], #<<
         'agregar':['a','add'], #<<
         'quitar':['q','quitar','eliminar','delete'],#<<
-        'modificar':['m','mod','modificar'] #<<
+        'modificar':['m','mod','modificar'], #<<
+        'guardar':['g'], #✔
     }
 
     #Agregar opciones marcadas
@@ -53,3 +55,18 @@ while (True): #programa
     if (sel in opciones_menu['salir']):
         print("adios")
         break
+
+    if (sel in opciones_menu['guardar']):
+        datos.guardarDatos(lista_animales,nombre_archivo)
+
+    if (sel in opciones_menu['quitar']):
+        mostrarListaAnimales(lista_animales,'Quitar Animal')
+        while (True):
+            sel = int(input(">> "))-1
+            if (sel in range(len(lista_animales))):
+                animal = lista_animales[sel] 
+                for llave in animal.keys():
+                    print(llave,': ',animal[llave],sep='')
+                print('-'*10)
+                break
+        lista_animales.pop(sel)

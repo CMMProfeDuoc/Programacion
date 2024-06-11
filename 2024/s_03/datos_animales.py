@@ -4,6 +4,12 @@ lista_test = [
         'tipo':'test',
         'peso':'999',
         'color':'test'
+    },
+    {
+        'nombre':'1',
+        'tipo':'2',
+        'peso':'3',
+        'color':'4'
     }
 ]
 
@@ -28,3 +34,19 @@ def obtenerDatos (nombre_archivo:str) -> list[dict]:
     archivo.close()
 
     return lista_animales
+
+def guardarDatos (lista : list[dict], archivo_objetivo:str) -> None:
+    archivo = open(archivo_objetivo,'w')
+    
+    llaves = lista[0].keys()
+    for elemento in llaves:
+        archivo.write(str(elemento)+';')
+    archivo.write('\n')
+
+    for elemento in lista:
+        for valor in elemento.values():
+            archivo.write(str(valor)+';')
+        archivo.write('\n')
+
+    archivo.close()
+
